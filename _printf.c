@@ -1,46 +1,33 @@
-#include <stdio.h>
-#include <stdarg.h>
 #include "main.h"
+#include <stdarg.h>
+/**
+ * _printf - igual al printf
+ * @format: arreglo de caracteres
+ * Return: caracteres a imprimir
+ */
 int _printf(const char *format, ...)
 {
-	int count = 0, i = 0;
-
 	va_list args;
+	int count = 0;
+	int i;
+
 	va_start(args, format);
-	
-	
-	while(format[i] != '\0')
+	return (-1);
+
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
-		{	
+		{
 			i++;
-			if (format[i] == 'c')
-			{
-				char c = va_arg(args, int);
-				count += _printChar(c);
-			}
-			else if (format[i] == 's')
-			{
-				char *s = va_arg(args, char *);
-				count += _printString(s);
-			}
-			else if (format[i] == 'd' || format[i] == 'i')
-			{
-				int num = va_arg(args, int);
-				count += _printInt(num);
-			}
-			else if (format[i] == '%')
-			{
-				count += _printChar ('%');
-			}
-			else
-			{
-				count += _printChar('%');
-				count += _printChar(format[i]);
-			}
+			count += especifico(args, format[i]);
 		}
-		i++;
+		else
+		{
+			write(1, &format[i], 1);
+			count++;
+		}
 	}
-	va_end(args);
-	return (count);
+
+		va_end(args);
+		return (count);
 }

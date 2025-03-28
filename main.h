@@ -4,10 +4,10 @@
 #include <stdarg.h>
 
 int _printf(const char *format, ...);
-int _printChar (va_list args);
-int _printString (va_list args);
-int print_percent (va_list args);
-int print_double (va_list args);
-int _printInt (va_list args);
-
+int print_char (va_list args);
+int print_string (va_list args);
+int print_int (va_list args);
+int print_porciento (va_list args);
+int especifico (va_list args, char especifico);
+int _putchar(char c);
 #endif
